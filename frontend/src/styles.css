@@ -1,0 +1,21 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+
+html {
+  color-scheme: light dark;
+}
+
+body {
+  background-color: white;
+  color: rgb(17, 24, 39);
+}
+
+@media (prefers-color-scheme: dark) {
+  body {
+    background-color: rgb(17, 24, 39);
+    color: rgb(243, 244, 246);
+  }
+}
