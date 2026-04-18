@@ -1,12 +1,12 @@
 import { Link, createFileRoute } from '@tanstack/react-router'
-import type { Pokemon } from '../../types'
+import { getPokemonById } from '../../client'
 import { TypeBadge } from '../../components/TypeBadge'
 
 export const Route = createFileRoute('/pokemon/$id')({
   loader: async ({ params }) => {
-    const res = await fetch(`http://localhost:8787/pokemon/${params.id}`)
-    if (!res.ok) throw new Error(`Pokemon ${params.id} not found`)
-    return res.json() as Promise<Pokemon>
+    const { data } = await getPokemonById({ path: { id: params.id } })
+    if (!data) throw new Error(`Pokemon ${params.id} not found`)
+    return data
   },
   component: PokemonDetailPage,
 })

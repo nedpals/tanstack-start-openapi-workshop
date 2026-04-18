@@ -1,12 +1,12 @@
 import { Link, createFileRoute } from '@tanstack/react-router'
-import type { Pokemon } from '../../types'
+import { listPokemon } from '../../client'
 import { PokemonCard } from '../../components/PokemonCard'
 import { PokemonGrid } from '../../components/PokemonGrid'
 
 export const Route = createFileRoute('/pokemon/')({
   loader: async () => {
-    const res = await fetch('http://localhost:8787/pokemon')
-    return res.json() as Promise<Pokemon[]>
+    const { data } = await listPokemon()
+    return data ?? []
   },
   component: PokemonListPage,
 })
